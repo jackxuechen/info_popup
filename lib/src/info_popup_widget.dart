@@ -171,7 +171,9 @@ class _InfoPopupWidgetState extends State<InfoPopupWidget> {
       },
       child: GestureDetector(
         onTap: _behaviour(),
-        onLongPressEnd: _onLongPressEnd,
+        onLongPress: () {
+          _onLongPressEnd();
+        },
         behavior: HitTestBehavior.translucent,
         child: CompositedTransformTarget(
           link: _layerLink,
@@ -253,16 +255,14 @@ class _InfoPopupWidgetState extends State<InfoPopupWidget> {
     _isControllerInitialized = true;
   }
 
-  Function? _onLongPressEnd(LongPressEndDetails details) {
+  void _onLongPressEnd() {
     if (widget.popupClickTriggerBehavior !=
         PopupClickTriggerBehavior.onLongPress) {
-      return null;
+      return;
     }
 
-    return () {
-      if (_infoPopupController != null && !_infoPopupController!.isShowing) {
-        _infoPopupController!.show();
-      }
-    };
+    if (_infoPopupController != null && !_infoPopupController!.isShowing) {
+      _infoPopupController!.show();
+    }
   }
 }
