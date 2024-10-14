@@ -190,7 +190,7 @@ class _InfoPopupWidgetState extends State<InfoPopupWidget> {
       return null;
     }
 
-    if (widget.popupClickTriggerBehavior == PopupClickTriggerBehavior.none) {
+    if (widget.popupClickTriggerBehavior != PopupClickTriggerBehavior.onTap) {
       return null;
     }
 
